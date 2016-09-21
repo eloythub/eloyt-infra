@@ -1,6 +1,13 @@
 version: '2'
 
 services:
+  api:
+    image: mhart/alpine-node:4.5
+    ports:
+      - "8000:8000"
+    command: node --version
+    links:
+      - mongoDB
   nginx:
     image: nginx:alpine
     volumes:

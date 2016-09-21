@@ -13,6 +13,13 @@ Docker for idea studio
 
 * install docker `https://docs.docker.com/engine/installation/`
 
+* Clone Repository with submodules
+```
+git clone --recursive git@github.com:eloythub/idea-studio-docker.git
+git submodule foreach git checkout master
+git submodule update --remote --merge
+```
+
 * compose containers
 ```
 chmod +x ./composer-install
