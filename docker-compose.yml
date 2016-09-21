@@ -1,26 +1,30 @@
 version: '2'
 
 services:
-  api:
-    image: mhart/alpine-node:4.5
-    ports:
-      - "8000:8000"
-    command: node --version
-    links:
-      - mongoDB
   nginx:
     image: nginx:alpine
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - server1:server1
     ports:
       - "80:80"
 
+  server1:
+    build: ./app/server
+    volumes:
+      - ./app/server:/var/app/server
+    links:
+      - mongoDB
+    ports:
+      - "3000"
+
   mongoDB:
     image: mongo:3.2
-    ports:
-      - "27017:27017"
     volumes:
       - ./docker/mongo:/var/lib/mongodb
       - ./docker/mongo/data:/data/db
+    ports:
+      - "27017"
     restart: always
