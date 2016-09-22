@@ -1,0 +1,4 @@
+cd ../
+ln -s idea-studio-docker/app/server/ idea-studio-server
+cd idea-studio-docker
+
