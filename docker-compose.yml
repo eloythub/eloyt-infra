@@ -17,8 +17,6 @@ services:
       - ./app/server:/var/app/server
     links:
       - mongoDB
-    ports:
-      - "3000"
 
   mongoDB:
     image: mongo:3.2
