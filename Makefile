@@ -1,3 +1,8 @@
+update-git-submodules:
+	git pull --recurse-submodules
+	git submodule foreach git checkout master
+	git submodule update --remote --merge
+
 install:
 	docker-compose down && docker-compose up -d --build
 
