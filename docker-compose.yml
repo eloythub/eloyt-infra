@@ -7,14 +7,14 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
     links:
-      - server:server
+      - api:server
     ports:
       - "80:80"
 
   server:
-    build: ./app/server
+    build: ./docker/api
     volumes:
-      - ./app/server:/var/app/server
+      - ./docker/api:/var/app/api
     links:
       - mongoDB
 

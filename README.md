@@ -19,13 +19,11 @@ git clone --recursive git@github.com:eloythub/idea-studio-docker.git
 cd idea-studio-docker
 git submodule foreach git checkout master
 git submodule update --remote --merge
-# make symlink to have access to ../idea-studio-server 
-./make-links
+# make symlink to have access to ../idea-studio-api
+make symlinks
 ```
 
 * compose containers
 ```
-chmod +x ./composer-install
-# compose down && up -d --build
-./composer-install
+make install
 ```
