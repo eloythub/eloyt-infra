@@ -36,5 +36,5 @@ make install
 * Health Check
 u can run the following command:
 ```
-curl http://dev.api.idea-studio.eloyt.com/nginx-status
+curl http://dev.api.idea-studio.eloyt.com/status
 ```
