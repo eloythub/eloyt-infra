@@ -9,9 +9,14 @@
 
 Docker for idea studio
 
-# setup
+# Setup
+* Hosts
+Add following lines into `/etc/hosts`
+```
+127.0.0.1 dev.api.idea-studio.eloyt.com
+```
 
-* install docker `https://docs.docker.com/engine/installation/`
+* Install docker `https://docs.docker.com/engine/installation/`
 
 * Clone Repository with submodules
 ```
@@ -23,7 +28,13 @@ git submodule update --remote --merge
 make symlinks
 ```
 
-* compose containers
+* Compose Containers
 ```
 make install
+```
+
+* Health Check
+u can run the following command:
+```
+curl http://dev.api.idea-studio.eloyt.com/nginx-status
 ```
