@@ -6,6 +6,9 @@ update-git-submodules:
 install:
 	docker-compose down && docker-compose up -d --build
 
+install-dump:
+	docker-compose down && docker-compose up --build
+
 symlinks:
 	cd ../
 	ln -s idea-studio-docker/docker/api/ idea-studio-api
