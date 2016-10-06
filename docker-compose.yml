@@ -21,11 +21,13 @@ services:
   mongoDB:
     image: mongo:3.2
     volumes:
-      - ./docker/mongo:/var/lib/mongodb
-      - ./docker/mongo/data:/data/db
+      - ./docker/mongo/conf/mongod.json:/etc/mongod.json
+      - ./docker/mongo/logs:/var/log/mongodb
+      - ./docker/mongo/data:/var/lib/mongodb
+      - ./docker/mongo/data/db:/data/db
     ports:
       - "27017"
-    restart: always
+    command: -smallfiles -nojournal
 
   redis:
     build: ./docker/redis
