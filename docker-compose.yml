@@ -7,6 +7,13 @@ services:
     volumes:
       - ./docker/api:/home/app/api
     ports: ["80"]
+    environment:
+      EXPOSE_PORT: 80
+      MONGO_DB_USERNAME: ""
+      MONGO_DB_PASSWORD: ""
+      MONGO_DB_HOST: "mongoDB"
+      MONGO_DB_PORT: 27017
+      MONGO_DB_DATABSE: "eloyt_idea_studio"
     links:
       - mongoDB
       - redis
