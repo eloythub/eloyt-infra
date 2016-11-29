@@ -9,6 +9,9 @@ install:
 install-dump:
 	docker-compose down && docker-compose up --build
 
+test:
+	docker exec -it ideastudiodocker_api_1 npm test
+
 symlinks:
 	cd ../
 	ln -s idea-studio-docker/docker/api/ idea-studio-api
