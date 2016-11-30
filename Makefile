@@ -10,7 +10,7 @@ install-dump:
 	docker-compose down && docker-compose up --build
 
 test:
-	docker exec -it ideastudiodocker_api_1 npm test
+	docker exec -it eloytinfra_api_1 npm test
 
 image-cleanup:
 	docker rm -f $$(docker ps -aq)
