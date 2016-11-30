@@ -12,10 +12,5 @@ install-dump:
 test:
 	docker exec -it ideastudiodocker_api_1 npm test
 
-symlinks:
-	cd ../
-	ln -s idea-studio-docker/docker/api/ idea-studio-api
-	cd idea-studio-docker
-
 image-cleanup:
 	docker rm -f $$(docker ps -aq)
