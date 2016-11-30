@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export GCLOUD_PROJECT_ID="eloyt-149708"
+export IMAGE_TAG="staging-v1"
+
+kubectl create -f ./kube/$1.yml
