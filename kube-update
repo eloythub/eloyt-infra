@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# use like this
+# ./kube-update api el-rc-mongo rc-mongo
+
+KUBE_NAMESPACE=$1
+KUBE_NAME=$2
+KUBE_TARGETED_FILE=$3
+
+kubectl rolling-update $KUBE_NAME \
+    --filename=./kube/$KUBE_TARGETED_FILE.yaml \
+    --namespace=$KUBE_NAMESPACE

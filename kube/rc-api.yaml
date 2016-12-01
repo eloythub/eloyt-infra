@@ -1,26 +1,27 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: eloyt-replication-controller
+  name: el-rc-api
   labels: 
-    app: api
+    app: el-rc-api
   namespace: api
 spec:
   replicas: 1
   selector:
-    app: api
+    app: el-api
   template:
     metadata:
-      name: api
+      name: el-api
       labels:
-        app: api
+        app: el-api
     spec:
-      volumes: 
-      - name: storage
-        hostPath:
-          path: /tmp/eloyt/storage
       containers:
-      - name: api
+      - name: el-api
         image: asia.gcr.io/eloyt-149708/api.eloyt.com:staging-v1
         ports:
         - containerPort: 80
+        env:
+        - name: MONGO_DB_HOST
+          value: el-mongo
+        - name: EXPOSE_PORT
+          value: "80"
