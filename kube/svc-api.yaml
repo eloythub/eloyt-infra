@@ -15,16 +15,3 @@ spec:
     name: https
   selector:
     app: el-api
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: api
-  name: el-mongo
-  labels:
-    app: el-mongo
-spec:
-  ports:
-    - port: 27017
-  selector:
-    app: el-mongo
