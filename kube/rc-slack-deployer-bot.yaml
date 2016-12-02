@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: el-slack-deployer-bot
+  labels:
+    app: el-slack-deployer-bot
+  namespace: api
+spec:
+  replicas: 1
+  selector:
+    app: el-slack-deployer-bot
+  template:
+    metadata:
+      name: el-slack-deployer-bot
+      labels:
+        app: el-slack-deployer-bot
+    spec:
+      containers:
+      - name: el-slack-deployer-bot
+        image: asia.gcr.io/eloyt-149708/slack-deployer-bot
+        ports:
+        - name: hubot
+          containerPort: 8080
+          hostPort: 8080
+        env:
+        - name: REDIS_URL
+          value: "redis://el-redis:6379/el"
+        - name: HUBOT_SLACK_TOKEN
+          value: "xoxb-111822038738-KGx7SktLoLSZBkKjg2c5g33w"
+        - name: HUBOT_SLACK_TEAM
+          value: "Eloyt"

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: api
+  name: el-slack-deployer-bot
+  labels:
+    app: el-slack-deployer-bot
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 104.199.227.43
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: el-slack-deployer-bot
