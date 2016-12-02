@@ -29,3 +29,9 @@ spec:
           value: "xoxb-111822038738-KGx7SktLoLSZBkKjg2c5g33w"
         - name: HUBOT_SLACK_TEAM
           value: "Eloyt"
+        - name: HUBOT_ADAPTER
+          value: "slack"
+        - name: HUBOT_SLACK_CHANNELMODE
+          value: "whitelist"
+        - name: HUBOT_SLACK_CHANNELS
+          value: "deployment"
