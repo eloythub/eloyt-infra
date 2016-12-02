@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: el-rc-mongo
-  labels: 
-    app: el-rc-mongo
+  name: el-mongo
+  labels:
+    app: el-mongo
   namespace: api
 spec:
   replicas: 1
@@ -16,7 +16,7 @@ spec:
         app: el-mongo
     spec:
       containers:
-      - image: mongo:3.2
+      - image: mongo
         name: mongo
         ports:
         - name: mongo

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: el-rc-api
-  labels: 
-    app: el-rc-api
+  name: el-api
+  labels:
+    app: el-api
   namespace: api
 spec:
   replicas: 1
