@@ -25,3 +25,7 @@ spec:
           value: el-mongo
         - name: EXPOSE_PORT
           value: "80"
+        - name: GCLOUD_PROJECT_ID
+          value: "eloyt-149708"
+        - name: GCLOUD_STORAGE_BUCKET
+          value: "eloyt"
