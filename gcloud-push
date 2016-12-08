@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_TAG="staging-v1"
+DEFAULT_TAG="staging-v2"
 GCLOUD_PROJECT_ID="eloyt-149708"
 
 DOCKER_LOCAL_IMAGE="eloyt/api.eloyt.com"
