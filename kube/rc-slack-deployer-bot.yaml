@@ -18,20 +18,8 @@ spec:
       containers:
       - name: el-slack-deployer-bot
         image: asia.gcr.io/eloyt-149708/slack-deployer-bot
-        ports:
-        - name: hubot
-          containerPort: 8080
-          hostPort: 8080
         env:
         - name: REDIS_URL
           value: "redis://el-redis:6379/el"
         - name: HUBOT_SLACK_TOKEN
-          value: "xoxb-111822038738-KGx7SktLoLSZBkKjg2c5g33w"
-        - name: HUBOT_SLACK_TEAM
-          value: "Eloyt"
-        - name: HUBOT_ADAPTER
-          value: "slack"
-        - name: HUBOT_SLACK_CHANNELMODE
-          value: "whitelist"
-        - name: HUBOT_SLACK_CHANNELS
-          value: "deployment"
+          value: "xoxb-111822038738-yKDPyIFE55Mc4a8vBMiJIEoV"
