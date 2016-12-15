@@ -13,8 +13,7 @@ test:
 	@docker exec -it eloytinfra_api_1 npm test
 
 image-cleanup:
-	@docker rm -f $$(docker ps -aq)
+	@if [[ $$(docker images -f "dangling=true" -q) ]]; then @docker rmi $$(docker images -f "dangling=true" -q) 1>/dev/null; fi
 
 create-network:
-	@docker network ls -f name=eloyt-network | grep eloyt-network > /dev/null \
-    	|| docker network create eloyt-network;
+	@docker network ls -f name=eloyt-network | grep eloyt-network > /dev/null || docker network create eloyt-network;
