@@ -1,16 +1,20 @@
 update-git-submodules:
-	git pull --recurse-submodules
-	git submodule foreach git checkout master
-	git submodule update --remote --merge
+	@git pull --recurse-submodules
+	@git submodule foreach "git checkout master"
+	@git submodule update --remote --merge
 
 install:
-	docker-compose down && docker-compose up -d --build
+	@docker-compose down && docker-compose up -d --build
 
 install-dump:
-	docker-compose down && docker-compose up --build
+	@docker-compose down && docker-compose up --build
 
 test:
-	docker exec -it eloytinfra_api_1 npm test
+	@docker exec -it eloytinfra_api_1 npm test
 
 image-cleanup:
-	docker rm -f $$(docker ps -aq)
+	@docker rm -f $$(docker ps -aq)
+
+create-network:
+	@docker network ls -f name=eloyt-network | grep eloyt-network > /dev/null \
+    	|| docker network create eloyt-network;

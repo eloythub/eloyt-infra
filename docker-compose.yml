@@ -42,3 +42,8 @@ services:
     image: eloythub/redis
     ports:
       - "6379"
+
+networks:
+  default:
+    external:
+      name: "eloyt-network"
