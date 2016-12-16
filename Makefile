@@ -1,6 +1,7 @@
-update-git-submodules:
+git-pull:
 	@git pull --recurse-submodules
 	@git submodule foreach "git checkout master"
+	@git submodule foreach "git pull"
 	@git submodule update --remote --merge
 
 install:
