@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: el-api
-        image: asia.gcr.io/eloyt-149708/api.eloyt.com:staging-v4
+        image: asia.gcr.io/eloyt-149708/api.eloyt.com:staging-v5
         ports:
         - containerPort: 80
         env:
