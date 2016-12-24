@@ -11,7 +11,8 @@
 * Hosts
 Add following lines into `/etc/hosts`
 ```
-127.0.0.1 dev.api.eloyt.com
+0.0.0.0 dev.eloyt.com
+0.0.0.0 dev.api.eloyt.com
 ```
 
 * Install docker `https://docs.docker.com/engine/installation/`
@@ -32,5 +33,6 @@ make install
 * Health Check
 u can run the following command:
 ```
+curl http://dev.eloyt.com/status
 curl http://dev.api.eloyt.com/status
 ```
