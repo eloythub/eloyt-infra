@@ -4,3 +4,6 @@
 [submodule "services/slack-deployer-bot"]
 	path = services/slack-deployer-bot
 	url = git@github.com:eloythub/slack-deployer-bot.git
+[submodule "services/eloyt.com"]
+	path = services/eloyt.com
+	url = git@github.com:eloythub/eloyt.com.git
