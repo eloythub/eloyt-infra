@@ -1,7 +1,0 @@
-#!/bin/bash
-
-KUBE_NAMESPACE=$1
-KUBE_ACTION=$2
-
-kubectl get $KUBE_ACTION \
-    --namespace=$KUBE_NAMESPACE

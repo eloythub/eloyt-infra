@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: el-certbot
+  labels:
+    app: el-certbot
+  namespace: api
+spec:
+  replicas: 1
+  selector:
+    app: el-certbot
+  template:
+    metadata:
+      name: el-certbot
+      labels:
+        app: el-certbot
+    spec:
+      containers:
+      - name: el-certbot
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/certbot:${DEFAULT_TAG}
+        ports:
+        - containerPort: 443
+        volumeMounts:
+            - name: misc-storage
+              mountPath: /ssl-certs/
+      volumes:
+        - name: misc-storage
+          gcePersistentDisk:
+            pdName: misc-disk
+            fsType: ext4

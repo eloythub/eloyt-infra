@@ -5,4 +5,6 @@ MAINTAINER Mahan Hazrati<mahan@eloyt.com>
 COPY ./nginx.conf.prod /etc/nginx/nginx.conf
 COPY ./conf.d/prod /etc/nginx/conf.d/prod/
 
+COPY ./ssl-cert /etc/letsencrypt/live/
+
 EXPOSE 80 443

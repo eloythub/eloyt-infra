@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: el-api
+  name: el-api-eloyt-com
   labels:
-    app: el-api
+    app: el-api-eloyt-com
   namespace: api
 spec:
   replicas: 1
   selector:
-    app: el-api
+    app: el-api-eloyt-com
   template:
     metadata:
-      name: el-api
+      name: el-api-eloyt-com
       labels:
-        app: el-api
+        app: el-api-eloyt-com
     spec:
       containers:
-      - name: el-api
+      - name: el-api-eloyt-com
         image: asia.gcr.io/${GCLOUD_PROJECT_ID}/api.eloyt.com:${DEFAULT_TAG}
         ports:
         - containerPort: 80

@@ -25,3 +25,11 @@ spec:
         - name: http-secure
           containerPort: 443
           hostPort: 443
+        volumeMounts:
+            - name: misc-storage
+              mountPath: /ssl-certs/
+      volumes:
+        - name: misc-storage
+          gcePersistentDisk:
+            pdName: misc-disk
+            fsType: ext4
