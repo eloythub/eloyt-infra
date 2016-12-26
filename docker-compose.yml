@@ -1,7 +1,20 @@
 version: '2'
 
 services:
-  api:
+  load-balancer:
+    image: nginx:alpine
+    volumes:
+      - ./services/load-balancer/nginx.conf:/etc/nginx/nginx.conf
+      - ./services/load-balancer/conf.d:/etc/nginx/conf.d
+    ports: ["8090:80"]
+
+  eloyt-com:
+    build: ./services/eloyt.com
+    volumes:
+      - ./services/eloyt.com:/opt/app:rw
+    ports: ["80"]
+
+  api-eloyt-com:
     build: ./services/api.eloyt.com
     volumes:
       - ./services/api.eloyt.com:/opt/app:rw
@@ -18,13 +31,6 @@ services:
     links:
       - mongoDB
       - redis
-
-  nginx:
-    image: nginx:alpine
-    volumes:
-      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./services/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-    ports: ["8090:80"]
 
   mongoDB:
     image: mongo:3.2
