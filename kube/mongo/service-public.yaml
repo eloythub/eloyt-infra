@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: api
-  name: el-mongo-lb
+  name: el-mongo-public
   labels:
-    app: el-mongo-lb
+    app: el-mongo-public
 spec:
   type: LoadBalancer
   loadBalancerIP: 104.199.218.233

@@ -30,5 +30,5 @@ http {
   resolver 127.0.0.11 valid=300s ipv6=off;
   resolver_timeout 10s;
 
-  include conf.d/dev/*;
+  include conf.d/prod/*;
 }

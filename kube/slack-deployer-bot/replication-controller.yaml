@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
       - name: el-slack-deployer-bot
-        image: asia.gcr.io/eloyt-149708/slack-deployer-bot
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/slack-deployer-bot:${DEFAULT_TAG}
         env:
         - name: REDIS_URL
           value: "redis://el-redis:6379/el"
         - name: HUBOT_SLACK_TOKEN
-          value: "xoxb-111822038738-yKDPyIFE55Mc4a8vBMiJIEoV"
+          value: ${HUBOT_SLACK_TOKEN}

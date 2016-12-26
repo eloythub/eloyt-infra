@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: el-api
-        image: asia.gcr.io/eloyt-149708/api.eloyt.com:staging-v6
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/api.eloyt.com:${DEFAULT_TAG}
         ports:
         - containerPort: 80
         env:
@@ -26,6 +26,6 @@ spec:
         - name: EXPOSE_PORT
           value: "80"
         - name: GCLOUD_PROJECT_ID
-          value: "eloyt-149708"
+          value: "${GCLOUD_PROJECT_ID}"
         - name: GCLOUD_STORAGE_BUCKET
           value: "eloyt"

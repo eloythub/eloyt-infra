@@ -6,7 +6,7 @@ metadata:
   labels:
     name: load-balancer
 spec:
-  type: load-balancer
+  type: LoadBalancer
   loadBalancerIP: 104.199.243.148
   ports:
   - port: 80

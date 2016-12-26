@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: el-redis
-        image: gcr.io/google_containers/redis:v1
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/redis:${DEFAULT_TAG}
         ports:
         - containerPort: 6379
         env:

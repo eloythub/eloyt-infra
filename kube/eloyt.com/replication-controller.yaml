@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: load-balancer
+  name: el-eloyt-com
   labels:
-    app: load-balancer
+    app: el-eloyt-com
   namespace: api
 spec:
   replicas: 1
   selector:
-    app: load-balancer
+    app: el-eloyt-com
   template:
     metadata:
-      name: load-balancer
+      name: el-eloyt-com
       labels:
-        app: load-balancer
+        app: el-eloyt-com
     spec:
       containers:
-      - name: load-balancer
-        image: asia.gcr.io/eloyt-149708/load-balancer:staging-v1
+      - name: el-eloyt-com
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/eloyt.com:${DEFAULT_TAG}
         ports:
         - containerPort: 80

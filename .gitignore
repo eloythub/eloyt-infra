@@ -40,3 +40,4 @@ services/mongo/data/*
 services/mongo/logs/*
 
 .DS_Store
+secrets

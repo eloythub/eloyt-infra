@@ -6,19 +6,25 @@ services:
     volumes:
       - ./services/load-balancer/nginx.conf:/etc/nginx/nginx.conf
       - ./services/load-balancer/conf.d:/etc/nginx/conf.d
-    ports: ["8090:80"]
+    ports:
+      - "80:80"
+      - "443:433"
 
   eloyt-com:
     build: ./services/eloyt.com
     volumes:
       - ./services/eloyt.com:/opt/app:rw
-    ports: ["80"]
+    ports:
+      - "8091:80"
+    environment:
+      EXPOSE_PORT: 80
 
   api-eloyt-com:
     build: ./services/api.eloyt.com
     volumes:
       - ./services/api.eloyt.com:/opt/app:rw
-    ports: ["80"]
+    ports:
+      - "8090:80"
     environment:
       EXPOSE_PORT: 80
       MONGO_DB_USERNAME: ""
@@ -48,8 +54,3 @@ services:
     image: eloythub/redis
     ports:
       - "6379"
-
-networks:
-  default:
-    external:
-      name: "eloyt-network"
