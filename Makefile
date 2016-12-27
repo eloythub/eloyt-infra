@@ -20,4 +20,4 @@ test:
 	@docker exec -it eloytinfra_api_1 npm test
 
 image-cleanup:
-	@if [[ $$(docker images -f "dangling=true" -q) ]]; then @docker rmi $$(docker images -f "dangling=true" -q) 1>/dev/null; fi
+	docker rmi -f $$(docker images -f "dangling=true" -q)

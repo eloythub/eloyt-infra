@@ -1,0 +1,6 @@
+# Usage
+# ./kube-delete load-balancer
+
+POD="$(kubectl get pods -n api| grep $1 | cut -f 1 -d " ")"
+
+kubectl delete pod ${POD} -n api

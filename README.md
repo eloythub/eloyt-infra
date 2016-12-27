@@ -36,3 +36,14 @@ u can run the following command:
 curl http://dev.eloyt.com/status
 curl http://dev.api.eloyt.com/status
 ```
+
+# Deployment Priority
+```
+./gcloud-push redis latest
+./gcloud-push mongo latest
+./gcloud-push slack-deployer-bot latest
+./gcloud-push storage latest
+./gcloud-push eloyt.com misc-1.0
+./gcloud-push api.eloyt.com misc-1.0
+./gcloud-push load-balancer misc-1.0
+```

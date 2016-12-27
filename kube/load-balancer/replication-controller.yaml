@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: load-balancer
+  name: el-load-balancer
   labels:
-    app: load-balancer
+    app: el-load-balancer
   namespace: api
 spec:
   replicas: 1
   selector:
-    app: load-balancer
+    app: el-load-balancer
   template:
     metadata:
-      name: load-balancer
+      name: el-load-balancer
       labels:
-        app: load-balancer
+        app: el-load-balancer
     spec:
       containers:
-      - name: load-balancer
+      - name: el-load-balancer
         image: asia.gcr.io/${GCLOUD_PROJECT_ID}/load-balancer:${DEFAULT_TAG}
         ports:
         - name: http
@@ -25,11 +25,3 @@ spec:
         - name: http-secure
           containerPort: 443
           hostPort: 443
-        volumeMounts:
-            - name: misc-storage
-              mountPath: /ssl-certs/
-      volumes:
-        - name: misc-storage
-          gcePersistentDisk:
-            pdName: misc-disk
-            fsType: ext4

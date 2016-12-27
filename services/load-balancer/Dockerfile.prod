@@ -2,9 +2,14 @@ FROM nginx:1.11
 
 MAINTAINER Mahan Hazrati<mahan@eloyt.com>
 
-COPY ./nginx.conf.prod /etc/nginx/nginx.conf
-COPY ./conf.d/prod /etc/nginx/conf.d/prod/
+RUN ln -sf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
-COPY ./ssl-cert /etc/letsencrypt/live/
+RUN apt-get update && apt-get -y upgrade
+
+COPY ./nginx.conf.prod /etc/nginx/nginx.conf
+COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
+COPY ./conf.d/prod/eloyt-com.conf /etc/nginx/conf.d/prod/eloyt-com.conf
+
+COPY ./ssl-carts /etc/nginx/ssl-certs/
 
 EXPOSE 80 443
