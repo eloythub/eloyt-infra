@@ -1,5 +1,0 @@
-FROM deliverous/certbot
-
-MAINTAINER Mahan Hazrati<mahan@eloyt.com>
-
-EXPOSE 80 443
