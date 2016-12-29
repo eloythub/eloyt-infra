@@ -88,7 +88,6 @@ then
     envsubst < kube/${PROJECT_DIR}/service.yaml | kubectl apply -f -
 fi
 
-
 # Update the Service public
 if [ -r kube/${PROJECT_DIR}/service-public.yaml ];
 then
@@ -96,4 +95,13 @@ then
 
     envsubst < kube/${PROJECT_DIR}/service-public.yaml | kubectl apply -f -
 fi
+
+# Update the Endpoint
+if [ -r kube/${PROJECT_DIR}/endpoint.yaml ];
+then
+    log "success" "Kubernetes Update Endpoint"
+
+    envsubst < kube/${PROJECT_DIR}/endpoint.yaml | kubectl apply -f -
+fi
+
 
