@@ -25,12 +25,10 @@ spec:
         - name: http-secure
           containerPort: 443
           hostPort: 443
-#        volumeMounts:
-#        - name: ssl-certs
-#          mountPath: /data/ssl-certs
-#      volumes:
-#      - name: ssl-certs
-#        glusterfs:
-#          endpoints: el-storage
-#          path: vol-ssl-certs
-#          readOnly: true
+        volumeMounts:
+        - mountPath: "/data/sslcerts"
+          name: glustersslcerts
+      volumes:
+      - name: glustersslcerts
+        persistentVolumeClaim:
+          claimName: gluster-claim

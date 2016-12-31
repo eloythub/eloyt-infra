@@ -64,22 +64,6 @@ then
     envsubst < kube/${PROJECT_DIR}/replication-controller.yaml | kubectl apply -f -
 fi
 
-# Update the Persistance Volume
-if [ -f kube/${PROJECT_DIR}/persistent-volume.yaml ];
-then
-    log "success" "Kubernetes Update Persistance Volume"
-
-    envsubst < kube/${PROJECT_DIR}/persistent-volume.yaml | kubectl apply -f -
-fi
-
-# Update the Persistance Volume Claim
-if [ -f kube/${PROJECT_DIR}/persistent-volume-claim.yaml ];
-then
-    log "success" "Kubernetes Update Persistance Volume Claim"
-
-    envsubst < kube/${PROJECT_DIR}/persistent-volume-claim.yaml | kubectl apply -f -
-fi
-
 # Update the Service
 if [ -r kube/${PROJECT_DIR}/service.yaml ];
 then
@@ -104,4 +88,18 @@ then
     envsubst < kube/${PROJECT_DIR}/endpoint.yaml | kubectl apply -f -
 fi
 
+# Update the Persistance Volume
+if [ -f kube/${PROJECT_DIR}/persistent-volume.yaml ];
+then
+    log "success" "Kubernetes Update Persistance Volume"
 
+    envsubst < kube/${PROJECT_DIR}/persistent-volume.yaml | kubectl apply -f -
+fi
+
+# Update the Persistance Volume Claim
+if [ -f kube/${PROJECT_DIR}/persistent-volume-claim.yaml ];
+then
+    log "success" "Kubernetes Update Persistance Volume Claim"
+
+    envsubst < kube/${PROJECT_DIR}/persistent-volume-claim.yaml | kubectl apply -f -
+fi

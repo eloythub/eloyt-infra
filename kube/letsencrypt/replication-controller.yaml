@@ -21,9 +21,9 @@ spec:
         ports:
         - containerPort: 443
         volumeMounts:
-          - mountPath: /data
-            name: public-claim-storage
+        - mountPath: "/data/sslcerts"
+          name: glustersslcerts
       volumes:
-        - name: public-claim-storage
-          persistentVolumeClaim:
-            claimName: el-public-pvc
+      - name: glustersslcerts
+        persistentVolumeClaim:
+          claimName: gluster-claim
