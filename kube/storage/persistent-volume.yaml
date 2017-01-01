@@ -10,6 +10,6 @@ spec:
     - ReadWriteMany
   glusterfs:
     endpoints: glusterfs-cluster
-    path: ssl_certs
+    path: ssl_certs_live
     readOnly: false
   persistentVolumeReclaimPolicy: Retain
