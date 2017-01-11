@@ -27,11 +27,11 @@ services:
       - "8090:80"
     environment:
       EXPOSE_PORT: 80
-      MONGO_DB_USERNAME: ""
-      MONGO_DB_PASSWORD: ""
+      MONGO_DB_USERNAME: "eloyt-usr"
+      MONGO_DB_PASSWORD: "987987987"
       MONGO_DB_HOST: "mongoDB"
       MONGO_DB_PORT: 27017
-      MONGO_DB_DATABSE: "eloyt"
+      MONGO_DB_DATABSE: "eloyt-db"
       GCLOUD_PROJECT_ID: "eloyt-149708"
       GCLOUD_STORAGE_BUCKET: "eloyt"
     links:
@@ -39,15 +39,17 @@ services:
       - redis
 
   mongoDB:
-    image: mongo:3.2
+    image: tutum/mongodb:3.2
     volumes:
-      - ./services/mongo/conf/mongod.json:/etc/mongod.json
       - ./services/mongo/logs:/var/log/mongodb
       - ./services/mongo/data:/var/lib/mongodb
       - ./services/mongo/data/db:/data/db
     ports:
       - "27017:27017"
-    command: -smallfiles -nojournal
+    environment:
+      MONGODB_DATABASE: "eloyt-db"
+      MONGODB_USER: "eloyt-usr"
+      MONGODB_PASS: "987987987"
 
   redis:
     build: ./services/redis

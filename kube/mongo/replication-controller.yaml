@@ -16,17 +16,24 @@ spec:
         app: el-mongo
     spec:
       containers:
-      - image: mongo
-        name: mongo
+      - name: el-mongo
+        image: tutum/mongodb:3.2
+        env:
+        - name: MONGODB_DATABASE
+          value: "eloyt-db"
+        - name: MONGODB_USER
+          value: "eloyt-usr"
+        - name: MONGODB_PASS
+          value: "987987987"
         ports:
         - name: mongo
           containerPort: 27017
           hostPort: 27017
         volumeMounts:
-            - name: mongo-persistent-storage
-              mountPath: /data/db
-      volumes:
         - name: mongo-persistent-storage
-          gcePersistentDisk:
-            pdName: mongo-disk
-            fsType: ext4
+          mountPath: /data/db
+      volumes:
+      - name: mongo-persistent-storage
+        gcePersistentDisk:
+          pdName: mongo-disk
+          fsType: ext4
