@@ -41,4 +41,3 @@ services/mongo/logs/*
 
 .DS_Store
 secrets
-.idea
