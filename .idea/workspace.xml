@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8410bedc-da99-417f-898b-0e46096149d6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/api.eloyt.com" afterPath="$PROJECT_DIR$/services/api.eloyt.com" />
-    </list>
+    <list default="true" id="8410bedc-da99-417f-898b-0e46096149d6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -406,7 +404,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16337000" />
+    <option name="totallyTimeSpent" value="16345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
