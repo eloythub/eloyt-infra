@@ -36,7 +36,8 @@ function log {
 }
 
 export PROJECT_DIR=$1
-export DEFAULT_TAG=$2
+export GCLOUD_PROJECT_ID=$2
+export DEFAULT_TAG=$3
 
 export DOCKER_LOCAL_IMAGE="eloyt/$PROJECT_DIR"
 export DOCKER_GCLOUD_IMAGE="asia.gcr.io/$GCLOUD_PROJECT_ID/$PROJECT_DIR"
