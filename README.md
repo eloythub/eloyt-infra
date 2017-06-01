@@ -30,6 +30,12 @@ git submodule update --remote --merg
 make install
 ```
 
+* Deploy
+```
+./gcloud-push api.eloyt.com eloyt-149708 dev-16
+./kube-delete api.eloyt.com
+```
+
 * Health Check
 u can run the following command:
 ```
