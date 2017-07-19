@@ -13,6 +13,7 @@ Add following lines into `/etc/hosts`
 ```
 0.0.0.0 dev.eloyt.com
 0.0.0.0 dev.api.eloyt.com
+0.0.0.0 adminer.eloyt.com
 ```
 
 * Install docker `https://docs.docker.com/engine/installation/`

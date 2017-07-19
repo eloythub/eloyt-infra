@@ -38,6 +38,7 @@ jspm_packages
 
 services/mongo/data/*
 services/mongo/logs/*
+services/postgres/data/*
 
 .DS_Store
 secrets
