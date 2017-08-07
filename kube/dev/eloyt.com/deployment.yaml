@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: eloyt-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eloyt-com
+
+    spec:
+      containers:
+      - name: eloyt-com
+        image: ${IMAGE_URI}
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key

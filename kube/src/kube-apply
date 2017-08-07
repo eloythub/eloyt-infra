@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Usage:
+# ./kube-apply dev load-balancer/deployment
+# ./kube-apply dev load-balancer/service
+
+KUBE_ENV=$1
+KUBE_CONFIG=$2
+KUBE_BIN="${HOME}/google-cloud-sdk/bin"
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+envsubst < $CURRENT_DIR/../$KUBE_ENV/$KUBE_CONFIG.yaml | kubectl apply -f -

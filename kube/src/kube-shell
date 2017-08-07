@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Usage
+# ./kube-shell load-balancer
+
+POD="$(kubectl get pods | grep $1 | cut -f 1 -d " ")"
+
+kubectl exec ${POD} -it -- bash -il

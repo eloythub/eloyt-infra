@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: load-balancer
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: load-balancer
+    servicePort: 80
+  rules:
+  - host: dev.api.eloyt.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: load-balancer
+          servicePort: 80
+  - host: dev.eloyt.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: eloyt-com
+          servicePort: 80

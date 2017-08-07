@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# use like this
-# ./kube-create rc-mongo
-
-kubectl create -f ./kube/$1.yaml

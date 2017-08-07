@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: el-api-eloyt-com
+  labels:
+    app: el-api-eloyt-com
+  namespace: api
+spec:
+  replicas: 1
+  selector:
+    app: el-api-eloyt-com
+  template:
+    metadata:
+      name: el-api-eloyt-com
+      labels:
+        app: el-api-eloyt-com
+    spec:
+      containers:
+      - name: el-api-eloyt-com
+        image: asia.gcr.io/${GCLOUD_PROJECT_ID}/api.eloyt.com:${DEFAULT_TAG}
+        ports:
+        - containerPort: 80
+        env:
+        - name: MONGO_DB_USERNAME
+          value: eloyt-usr
+        - name: MONGO_DB_PASSWORD
+          value: "987987987"
+        - name: MONGO_DB_HOST
+          value: el-mongo
+        - name: MONGO_DB_PORT
+          value: "27017"
+        - name: MONGO_DB_DATABSE
+          value: eloyt-db
+        - name: EXPOSE_PORT
+          value: "80"
+        - name: GCLOUD_PROJECT_ID
+          value: "${GCLOUD_PROJECT_ID}"
+        - name: GCLOUD_STORAGE_BUCKET
+          value: "eloyt"

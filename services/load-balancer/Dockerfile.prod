@@ -1,15 +1,15 @@
-FROM nginx:1.11
+FROM nginx:1.13
 
 MAINTAINER Mahan Hazrati<mahan@eloyt.com>
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
-RUN apt-get update && apt-get -y upgrade
+RUN apt-get update
 
 COPY ./nginx.conf.prod /etc/nginx/nginx.conf
-COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
+#COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
 COPY ./conf.d/prod/eloyt-com.conf /etc/nginx/conf.d/prod/eloyt-com.conf
 
-COPY ./ssl-certs/ /ssl-certs/
+COPY ./ssl-certs/comodo/ /ssl-certs/
 
 EXPOSE 80 443

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo 'this file has been deprecated'
+
+exit 1
+
 # Exmaple
 #   ./gcloud-push eloyt.com eloyt-149708 staging-v1
 #
@@ -46,13 +50,13 @@ if [ -e services/${PROJECT_DIR}/Dockerfile.prod ];
 then
     log "success" "Build Image"
 
-    cd services/$PROJECT_DIR
+    cd services/$PROJECT_DIR && \
 
-    docker build . -f Dockerfile.prod -t $DOCKER_LOCAL_IMAGE
+    docker build . -f Dockerfile.prod -t $DOCKER_LOCAL_IMAGE && \
 
-    docker tag $DOCKER_LOCAL_IMAGE $DOCKER_GCLOUD_IMAGE:$DEFAULT_TAG
+    docker tag $DOCKER_LOCAL_IMAGE $DOCKER_GCLOUD_IMAGE:$DEFAULT_TAG && \
 
-    gcloud docker -- push $DOCKER_GCLOUD_IMAGE:$DEFAULT_TAG
+    gcloud docker -- push $DOCKER_GCLOUD_IMAGE:$DEFAULT_TAG && \
 
     cd - 1> /dev/null 2> /dev/null
 fi

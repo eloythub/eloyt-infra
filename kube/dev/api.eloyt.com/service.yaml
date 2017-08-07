@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eloyt-com
+  labels:
+    name: eloyt-com
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: api-eloyt-com

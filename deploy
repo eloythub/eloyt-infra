@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+/*
+
+./deploy dev eloyt.com v0.0.8
+*/
+
+require('./deploy.js')

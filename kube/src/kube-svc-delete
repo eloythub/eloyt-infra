@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Usage
+# ./kube-svc-delete load-balancer
+
+SVC="$(kubectl get svc | grep $1 | cut -f 1 -d " ")"
+
+kubectl delete svc ${SVC}

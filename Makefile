@@ -20,4 +20,9 @@ test:
 	@docker exec -it eloytinfra_api_1 npm test
 
 image-cleanup:
-	docker rmi -f $$(docker images -f "dangling=true" -q)
+	@docker rmi -f $$(docker images -f "dangling=true" -q) 1> /dev/null 2> /dev/null
+	@docker rmi -f $$(docker images | grep eloyt.azurecr.io/eloyt.com | awk '{ print $$3; }') 1> /dev/null 2> /dev/null
+
+permissions:
+	@chmod +x ./deploy
+	@chmod +x ./kube/src/*

@@ -1,3 +1,4 @@
 /services/api.eloyt.com/node_modules
 /services/api.eloyt.com/npm-debug.log
 /services/api.eloyt.com/tmp/*.mp4
+/services/eloyt.com/node_modules

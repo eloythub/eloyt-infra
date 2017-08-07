@@ -1,6 +1,0 @@
-# Usage
-# ./kube-shell load-balancer
-
-POD="$(kubectl get pods -n api| grep $1 | cut -f 1 -d " ")"
-
-kubectl exec ${POD} -n api -it -- bash -il

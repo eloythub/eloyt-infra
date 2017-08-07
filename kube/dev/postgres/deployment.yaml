@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: ${IMAGE_URI}
+        env:
+        - name: POSTGRES_USER
+          value: "eloyt-usr"
+        - name: POSTGRES_PASSWORD
+          value: "987987987"
+        ports:
+        - containerPort: 5432
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key

@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: load-balancer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: load-balancer
+    spec:
+      containers:
+      - name: load-balancer
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80

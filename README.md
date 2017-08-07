@@ -8,7 +8,28 @@
 ```
 
 # Setup
-* Hosts
+
+* Install docker `https://docs.docker.com/engine/installation/`
+* Install minikube `https://github.com/kubernetes/minikube`
+
+run following commands
+```
+make permissions
+```
+
+* Hosts (minikube)
+run the following command to get the minikube ip: `minikube ip`
+
+Add following lines into `/etc/hosts`
+```
+{minikube ip} dev.eloyt.com
+{minikube ip} dev.api.eloyt.com
+{minikube ip} adminer.eloyt.com
+```
+
+* Hosts (docker compose)
+run the following command to get the minikube ip: `minikube ip`
+
 Add following lines into `/etc/hosts`
 ```
 0.0.0.0 dev.eloyt.com
@@ -16,41 +37,40 @@ Add following lines into `/etc/hosts`
 0.0.0.0 adminer.eloyt.com
 ```
 
-* Install docker `https://docs.docker.com/engine/installation/`
-
-* Clone Repository with submodules
+# Clone Repository with submodules
 ```
 git clone --recursive git@github.com:eloythub/eloyt-infra.git
 cd eloyt-infra
 git submodule foreach git checkout master
-git submodule update --remote --merg
+git submodule update --remote --merge
 ```
 
-* Compose Containers
+# run docker compose
 ```
 make install
-```
-
-* Deploy
-```
-./gcloud-push api.eloyt.com eloyt-149708 dev-16
-./kube-delete api.eloyt.com
-```
-
-* Health Check
-u can run the following command:
-```
-curl http://dev.eloyt.com/status
-curl http://dev.api.eloyt.com/status
+make install-dump
 ```
 
 # Deployment Priority
 ```
-./gcloud-push redis latest
-./gcloud-push mongo latest
-./gcloud-push slack-deployer-bot latest
-./gcloud-push storage latest
-./gcloud-push eloyt.com misc-1.0
-./gcloud-push api.eloyt.com misc-1.0
-./gcloud-push load-balancer misc-1.0
+# Database
+./kube/src/kube-apply dev postgres/service
+./deploy dev postgres v0.0.0
+
+./kube/src/kube-apply dev redis/service
+./deploy dev redis v0.0.0
+
+./kube/src/kube-apply dev rabbitMQ/service
+./deploy dev rabbitMQ v0.0.0
+
+# Load balancer
+./kube/src/kube-apply dev load-balancer/ingress
+
+# api.eloyt.com
+./kube/src/kube-apply dev api.eloyt.com/service
+./deploy dev api.eloyt.com v0.0.0
+
+# eloyt.com
+./kube/src/kube-apply dev eloyt.com/service
+./deploy dev eloyt.com v0.0.0
 ```
