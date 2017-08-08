@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: eloyt-com
+  name: staging-eloyt-com
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
-        app: eloyt-com
+        app: staging-eloyt-com
 
     spec:
       containers:
-      - name: eloyt-com
+      - name: staging-eloyt-com
         image: ${IMAGE_URI}
         ports:
         - containerPort: 80

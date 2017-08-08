@@ -12,12 +12,32 @@ const manifestDir  = path.resolve(path.join(__dirname, 'kube', '.deploy-manifest
 const manifestFile = path.join(manifestDir, `${tag}.json`)
 const servicesDir  = path.resolve(path.join(__dirname, 'services'))
 
+const deploySecretDir  = path.resolve(path.join(__dirname, 'kube', 'deploy-secrets', env, service))
+
 const kubeApplySrc = path.resolve(path.join(__dirname, 'kube', 'src', 'kube-apply'))
 
 const kubernetesConfig = path.join(service, 'deployment')
 
 const dockerLocalImage = `eloyt/${service}`
 const dockerAzureImage = `eloyt.azurecr.io/${service}`
+
+function copy (src, dest) {
+  return new Promise(function (resolve, reject) {
+    try {
+      console.log('copy config:', dest)
+
+      fs.createReadStream(src).pipe(fs.createWriteStream(dest))
+
+      setTimeout(function () {
+        'use strict'
+
+        resolve()
+      }, 0)
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
 
 function shell (cmd, args, opt) {
   return new Promise(function (resolve, reject) {
@@ -48,21 +68,26 @@ function shell (cmd, args, opt) {
 async function createImage () {
   'use strict'
 
-  const serviceProductionDockerFile = path.join(servicesDir, service, 'Dockerfile.prod')
+  const serviceProductionDockerFile = path.join(servicesDir, service, `Dockerfile.${env}`)
 
   if (!fs.existsSync(serviceProductionDockerFile)) {
-    console.error('there is no dockerfile for production')
+    console.error(`there is no Dockerfile.${env}`)
 
     process.exit(1)
   }
 
   console.log('Creating image: ', serviceProductionDockerFile)
 
-
   try {
     const cwd = path.join(servicesDir, service) // switch the directory to service
 
-    await shell('docker', ['build', '.', '-f', 'Dockerfile.prod', '-t',  `${dockerLocalImage}:${tag}`], { cwd })
+    const configSrc = path.join(deploySecretDir, '.env')
+    
+	if (fs.existsSync(configSrc)) {
+      await copy(configSrc, path.join(servicesDir, service, `.env.kube.${env}`))
+    }
+
+    await shell('docker', ['build', '.', '-f', `Dockerfile.${env}`, '-t',  `${dockerLocalImage}:${tag}`], { cwd })
     await shell('docker', ['tag', `${dockerLocalImage}:${tag}`, `${dockerAzureImage}:${tag}`], { cwd })
     await shell('docker', ['push', `${dockerAzureImage}:${tag}`], { cwd })
   } catch (err) {

@@ -36,11 +36,16 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+.DS_Store
+.idea
+
 services/mongo/data/*
 services/mongo/logs/*
 services/postgres/data/*
 
-.DS_Store
-secrets
-.idea
-.DS_Store
+/kube/deploy-secrets/prod/*
+/kube/deploy-secrets/staging/*
+/kube/deploy-secrets/test/*
+!/kube/deploy-secrets/prod/README.md
+!/kube/deploy-secrets/staging/README.md
+!/kube/deploy-secrets/test/README.md

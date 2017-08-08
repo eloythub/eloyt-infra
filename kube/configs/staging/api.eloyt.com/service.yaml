@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: staging-api-eloyt-com
+  labels:
+    name: staging-api-eloyt-com
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: staging-api-eloyt-com

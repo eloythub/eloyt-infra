@@ -10,4 +10,4 @@ KUBE_BIN="${HOME}/google-cloud-sdk/bin"
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-envsubst < $CURRENT_DIR/../$KUBE_ENV/$KUBE_CONFIG.yaml | kubectl apply -f -
+envsubst < $CURRENT_DIR/../configs/$KUBE_ENV/$KUBE_CONFIG.yaml | kubectl apply -f -

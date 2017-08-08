@@ -6,10 +6,24 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
 RUN apt-get update
 
-COPY ./nginx.conf.prod /etc/nginx/nginx.conf
-#COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
-COPY ./conf.d/prod/eloyt-com.conf /etc/nginx/conf.d/prod/eloyt-com.conf
+RUN apt-get install curl -y
 
+# SSL Cert
 COPY ./ssl-certs/comodo/ /ssl-certs/
+
+COPY ./nginx.conf.prod /etc/nginx/nginx.conf
+
+# Production
+COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
+COPY ./conf.d/prod/eloyt-com.conf     /etc/nginx/conf.d/prod/eloyt-com.conf
+
+# Staging
+COPY ./conf.d/staging/api-eloyt-com.conf /etc/nginx/conf.d/staging/api-eloyt-com.conf
+COPY ./conf.d/staging/eloyt-com.conf     /etc/nginx/conf.d/staging/eloyt-com.conf
+
+# Test
+COPY ./conf.d/test/api-eloyt-com.conf /etc/nginx/conf.d/test/api-eloyt-com.conf
+COPY ./conf.d/test/eloyt-com.conf     /etc/nginx/conf.d/test/eloyt-com.conf
+
 
 EXPOSE 80 443

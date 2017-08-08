@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: test-eloyt-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-eloyt-com
+
+    spec:
+      containers:
+      - name: test-eloyt-com
+        image: ${IMAGE_URI}
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 5
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 5
+          periodSeconds: 15
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key

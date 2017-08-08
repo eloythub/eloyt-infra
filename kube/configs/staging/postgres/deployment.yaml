@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: staging-postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: staging-postgres
+    spec:
+      containers:
+      - name: staging-postgres
+        image: ${IMAGE_URI}
+        env:
+        - name: POSTGRES_USER
+          value: "eloyt-usr"
+        - name: POSTGRES_PASSWORD
+          value: "987987987"
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 5432
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key

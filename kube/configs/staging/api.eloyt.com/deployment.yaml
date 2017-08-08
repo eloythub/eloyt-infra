@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: staging-api-eloyt-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: staging-api-eloyt-com
+
+    spec:
+      containers:
+      - name: staging-api-eloyt-com
+        image: ${IMAGE_URI}
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: staging
+#        readinessProbe:
+#          httpGet:
+#            path: /health-check/database
+#            port: 80
+#          initialDelaySeconds: 5
+#          timeoutSeconds: 1
+#          successThreshold: 1
+#          failureThreshold: 5
+#          periodSeconds: 15
+#        livenessProbe:
+#          httpGet:
+#            path: /health-check/database
+#            port: 80
+#          initialDelaySeconds: 5
+#          timeoutSeconds: 1
+#          successThreshold: 1
+#          failureThreshold: 5
+#          periodSeconds: 15
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key
