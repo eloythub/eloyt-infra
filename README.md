@@ -74,3 +74,9 @@ make install-dump
 ./kube/src/kube-apply dev eloyt.com/service
 ./deploy dev eloyt.com v0.0.0
 ```
+
+# Create Database on Staging
+```
+./kube/src/kube-psql "CREATE DATABASE eloytdb"
+./kube/src/kube-psql "CREATE DATABASE eloytdb_test"
+```

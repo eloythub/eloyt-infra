@@ -1,0 +1,7 @@
+#!/bin/sh
+
+SQL_COMMAND="${1}"
+
+POD="$(kubectl get pods | grep 'staging-postgres' | cut -f 1 -d " ")"
+
+kubectl exec ${POD} -it -- psql -U eloyt-usr -w -c "${SQL_COMMAND}"
