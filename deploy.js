@@ -43,17 +43,10 @@ function shell (cmd, args, opt) {
   return new Promise(function (resolve, reject) {
     'use strict'
 
+    // pipe every response to process.stdout
+    opt.stdio = [process.stdout, process.stdout, process.stdout, process.stdout, process.stdout]
+
     const spawnStream = spawn(cmd, args, opt)
-
-    spawnStream.stdout.on('data', function (data) {
-      console.info(data.toString().trim())
-    })
-
-    spawnStream.stderr.on('data', function (data) {
-      //console.error(data.toString().trim())
-
-      reject(data.toString().trim())
-    })
 
     spawnStream.on('exit', function (code) {
       if (code === 0) {
