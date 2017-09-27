@@ -10,6 +10,13 @@ services:
       - "80:80"
       - "443:433"
 
+  api-eloyt-com:
+    build: ./services/api.eloyt.com
+    volumes:
+      - ./services/api.eloyt.com:/opt/app:rw
+    ports:
+      - "8090:80"
+
   eloyt-com:
     build: ./services/eloyt.com
     volumes:
@@ -19,28 +26,12 @@ services:
     environment:
       EXPOSE_PORT: 80
 
-  api-eloyt-com:
-    build: ./services/api.eloyt.com
+  com-eloyt-com:
+    build: ./services/com.eloyt.com
     volumes:
-      - ./services/api.eloyt.com:/opt/app:rw
+      - ./services/com.eloyt.com:/opt/app:rw
     ports:
-      - "8090:80"
-    links:
-      - mongoDB
-      - redis
-
-  mongoDB:
-    image: tutum/mongodb:3.2
-    volumes:
-      - ./services/mongo/logs:/var/log/mongodb
-      - ./services/mongo/data:/var/lib/mongodb
-      - ./services/mongo/data/db:/data/db
-    ports:
-      - "27017:27017"
-    environment:
-      MONGODB_DATABASE: "eloyt-db"
-      MONGODB_USER: "eloyt-usr"
-      MONGODB_PASS: "987987987"
+      - "8092:80"
 
   adminer:
     image: adminer
@@ -59,6 +50,5 @@ services:
 
   redis:
     build: ./services/redis
-    image: eloythub/redis
-    ports:
-      - "6379"
+    volumes:
+      - ./services/redis/data:/data

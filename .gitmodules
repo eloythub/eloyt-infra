@@ -7,3 +7,6 @@
 [submodule "services/eloyt.com"]
 	path = services/eloyt.com
 	url = git@github.com:eloythub/eloyt.com.git
+[submodule "services/com.eloyt.com"]
+	path = services/com.eloyt.com
+	url = git@github.com:eloythub/com.eloyt.com.git
