@@ -1,6 +1,7 @@
-version: '3'
+version: '2'
 
 services:
+####################################################################### LOADBALANCER
   load-balancer:
     image: nginx:alpine
     volumes:
@@ -9,34 +10,30 @@ services:
     ports:
       - "80:80"
       - "443:433"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.100
 
-  api-eloyt-com:
-    build: ./services/api.eloyt.com
-    volumes:
-      - ./services/api.eloyt.com:/opt/app:rw
-    ports:
-      - "8090:80"
-
-  eloyt-com:
-    build: ./services/eloyt.com
-    volumes:
-      - ./services/eloyt.com:/opt/app:rw
-    ports:
-      - "8091:80"
-    environment:
-      EXPOSE_PORT: 80
-
-  com-eloyt-com:
-    build: ./services/com.eloyt.com
-    volumes:
-      - ./services/com.eloyt.com:/opt/app:rw
-    ports:
-      - "8092:80"
-
+####################################################################### SERVICES
   adminer:
     image: adminer
     links:
       - postgresdb
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.50
 
   postgresdb:
     build: ./services/postgres
@@ -47,8 +44,95 @@ services:
       POSTGRES_PASSWORD: "987987987"
     volumes:
       - ./services/postgres/data:/var/lib/postgresql/data
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.51
 
   redis:
     build: ./services/redis
     volumes:
       - ./services/redis/data:/data
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.52
+
+####################################################################### MICRO SERVICES
+  api-eloyt-com:
+    build: ./services/api.eloyt.com
+    volumes:
+      - ./services/api.eloyt.com:/opt/app:rw
+    ports:
+      - "8090:80"
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.101
+
+  eloyt-com:
+    build: ./services/eloyt.com
+    volumes:
+      - ./services/eloyt.com:/opt/app:rw
+    ports:
+      - "8091:80"
+    environment:
+      EXPOSE_PORT: 80
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.102
+
+  com-eloyt-com:
+    build: ./services/com.eloyt.com
+    volumes:
+      - ./services/com.eloyt.com:/opt/app:rw
+    ports:
+      - "8092:80"
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.103
+
+
+####################################################################### NETWORK CONFIG
+networks:
+  ELOYT_NET:
+    ipam:
+      config:
+      - subnet: 192.180.0.0/24
