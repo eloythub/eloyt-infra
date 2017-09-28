@@ -66,6 +66,7 @@ http {
     include conf.d/test/eloyt-com.conf;
 
     # Staging Configs
+    include conf.d/staging/com-eloyt-com.conf;
     include conf.d/staging/api-eloyt-com.conf;
     include conf.d/staging/eloyt-com.conf;
 }

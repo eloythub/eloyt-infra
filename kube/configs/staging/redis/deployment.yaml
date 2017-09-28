@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: staging-redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: staging-redis
+    spec:
+      containers:
+      - name: staging-redis
+        image: ${IMAGE_URI}
+        ports:
+        - containerPort: 6379
+      imagePullSecrets:
+      - name: eloyt-azure-registry-key
