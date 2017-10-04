@@ -19,6 +19,7 @@ COPY ./conf.d/prod/api-eloyt-com.conf /etc/nginx/conf.d/prod/api-eloyt-com.conf
 COPY ./conf.d/prod/eloyt-com.conf     /etc/nginx/conf.d/prod/eloyt-com.conf
 
 # Staging
+COPY ./conf.d/staging/rabbitmq-eloyt-com.conf /etc/nginx/conf.d/staging/rabbitmq-eloyt-com.conf
 COPY ./conf.d/staging/com-eloyt-com.conf /etc/nginx/conf.d/staging/com-eloyt-com.conf
 COPY ./conf.d/staging/api-eloyt-com.conf /etc/nginx/conf.d/staging/api-eloyt-com.conf
 COPY ./conf.d/staging/eloyt-com.conf     /etc/nginx/conf.d/staging/eloyt-com.conf

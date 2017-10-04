@@ -27,6 +27,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:
@@ -48,6 +49,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:
@@ -64,6 +66,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:
@@ -71,6 +74,33 @@ services:
     networks:
       ELOYT_NET:
         ipv4_address: 192.180.0.52
+
+  rabbitmq:
+    build: ./services/rabbitmq
+    hostname: "dev.rabbitmq.eloyt.com"
+    volumes:
+      - ./services/rabbitmq/data:/etc/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    extra_hosts:
+      - "dev.eloyt.com:192.180.0.100"
+      - "dev.api.eloyt.com:192.180.0.100"
+      - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
+    ports:
+      - "15671:15671"
+      - "15672:15672"
+      - "5671:5671"
+      - "5672:5672"
+    labels:
+      project: ELOYT
+    networks:
+      - ELOYT_NET
+    networks:
+      ELOYT_NET:
+        ipv4_address: 192.180.0.53
 
 ####################################################################### MICRO SERVICES
   api-eloyt-com:
@@ -83,6 +113,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:
@@ -103,6 +134,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:
@@ -121,6 +153,7 @@ services:
       - "dev.eloyt.com:192.180.0.100"
       - "dev.api.eloyt.com:192.180.0.100"
       - "dev.com.eloyt.com:192.180.0.100"
+      - "dev.rabbitmq.eloyt.com:192.180.0.100"
     labels:
       project: ELOYT
     networks:

@@ -24,6 +24,7 @@ Add following lines into `/etc/hosts`
 ```
 {minikube ip} dev.eloyt.com
 {minikube ip} dev.api.eloyt.com
+{minikube ip} dev.rabbitmq.eloyt.com
 {minikube ip} adminer.eloyt.com
 ```
 
@@ -34,6 +35,7 @@ Add following lines into `/etc/hosts`
 ```
 0.0.0.0 dev.eloyt.com
 0.0.0.0 dev.api.eloyt.com
+0.0.0.0 dev.rabbitmq.eloyt.com
 0.0.0.0 adminer.eloyt.com
 ```
 
@@ -60,8 +62,8 @@ make install-dump
 ./kube/src/kube-apply dev redis/service
 ./deploy dev redis v0.0.0
 
-./kube/src/kube-apply dev rabbitMQ/service
-./deploy dev rabbitMQ v0.0.0
+./kube/src/kube-apply dev rabbitmq/service
+./deploy dev rabbitmq v0.0.0
 
 # Load balancer
 ./kube/src/kube-apply dev load-balancer/ingress
