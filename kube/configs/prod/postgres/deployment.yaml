@@ -19,5 +19,3 @@ spec:
           value: "987987987"
         ports:
         - containerPort: 5432
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key

@@ -5,4 +5,4 @@
 ./deploy dev eloyt.com v0.0.8
 */
 
-require('./deploy.js')
+require('./deploy.gcloud.js')

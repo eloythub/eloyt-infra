@@ -33,5 +33,3 @@ spec:
           successThreshold: 1
           failureThreshold: 5
           periodSeconds: 15
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key

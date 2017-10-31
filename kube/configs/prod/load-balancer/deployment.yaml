@@ -15,5 +15,3 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key

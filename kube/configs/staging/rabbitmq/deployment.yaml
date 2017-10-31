@@ -24,5 +24,3 @@ spec:
           value: "EloytRabbit123"
         - name: RABBITMQ_DEFAULT_VHOST
           value: "/"
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key

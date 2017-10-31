@@ -49,3 +49,4 @@ services/postgres/data/*
 !/kube/deploy-secrets/prod/README.md
 !/kube/deploy-secrets/staging/README.md
 !/kube/deploy-secrets/test/README.md
+/kube/deploy-secrets/staging/postgres/Eloyt-ac1b74dc36bf.json

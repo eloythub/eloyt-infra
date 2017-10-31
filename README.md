@@ -81,4 +81,8 @@ make install-dump
 ```
 ./kube/src/kube-psql "CREATE DATABASE eloytdb"
 ./kube/src/kube-psql "CREATE DATABASE eloytdb_test"
+
+in shell:
+psql -U eloyt-usr -c "CREATE DATABASE eloytdb"
+psql -U eloyt-usr -d eloytdb
 ```

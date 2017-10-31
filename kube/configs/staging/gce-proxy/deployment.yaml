@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: staging-gce-proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: staging-gce-proxy
+    spec:
+      containers:
+        - image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          name: cloudsql-proxy
+          command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                    "-instances=e-stock-182503:asia-east1:postgres-staging=tcp:5432",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          volumeMounts:
+           - name: cloudsql-instance-credentials
+             mountPath: /secrets/cloudsql
+             readOnly: true
+           - name: ssl-certs
+             mountPath: /etc/ssl/certs
+          ports:
+           - containerPort: 5432
+             name: postgres
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs

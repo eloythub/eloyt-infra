@@ -15,23 +15,6 @@ spec:
         image: ${IMAGE_URI}
         ports:
         - containerPort: 80
-        env:
-        - name: MONGO_DB_USERNAME
-          value: eloyt-usr
-        - name: MONGO_DB_PASSWORD
-          value: "987987987"
-        - name: MONGO_DB_HOST
-          value: el-mongo
-        - name: MONGO_DB_PORT
-          value: "27017"
-        - name: MONGO_DB_DATABSE
-          value: eloyt-db
-        - name: EXPOSE_PORT
-          value: "80"
-        - name: GCLOUD_PROJECT_ID
-          value: "${GCLOUD_PROJECT_ID}"
-        - name: GCLOUD_STORAGE_BUCKET
-          value: "eloyt"
         readinessProbe:
           httpGet:
             path: /health-check/app
@@ -50,5 +33,3 @@ spec:
           successThreshold: 1
           failureThreshold: 5
           periodSeconds: 15
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key

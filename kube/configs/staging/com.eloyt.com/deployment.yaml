@@ -18,6 +18,18 @@ spec:
         env:
         - name: NODE_ENV
           value: staging
+        - name: POSTGRES_DB_HOST
+          value: 127.0.0.1
+        - name: POSTGRES_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-db-credentials
+              key: username
+        - name: POSTGRES_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-db-credentials
+              key: password
         readinessProbe:
           httpGet:
             path: /health-check/database
@@ -36,5 +48,27 @@ spec:
           successThreshold: 1
           failureThreshold: 5
           periodSeconds: 15
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key
+
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.11
+        name: cloudsql-proxy
+        command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                  "-instances=e-stock-182503:asia-east1:postgres-staging=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+          - name: ssl-certs
+            mountPath: /etc/ssl/certs
+          - name: cloudsql
+            mountPath: /cloudsql
+
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
+        - name: cloudsql
+          emptyDir:

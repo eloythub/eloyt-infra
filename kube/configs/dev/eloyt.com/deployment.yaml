@@ -15,5 +15,3 @@ spec:
         image: ${IMAGE_URI}
         ports:
         - containerPort: 80
-      imagePullSecrets:
-      - name: eloyt-azure-registry-key
